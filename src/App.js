@@ -1,6 +1,6 @@
-import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from "react"
+import logo from "./logo.svg"
+import "./App.css"
 
 function App() {
   return (
@@ -8,10 +8,10 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit{' '}
+          Edit{" "}
           <code
             onClick={() => {
-              fetch('/.netlify/functions/node-fetch')
+              fetch("/.netlify/functions/node-fetch")
                 .then(response => response.json())
                 .then(json => {
                   console.log(json)
@@ -19,7 +19,7 @@ function App() {
             }}
           >
             src/App.js
-          </code>{' '}
+          </code>{" "}
           and save to reload.
         </p>
         <a
