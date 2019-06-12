@@ -39,8 +39,8 @@ function getBody() {
      <QUERY objecttype='TrainAnnouncement'>
       <FILTER>
          <AND>
-            <EQ name='ActivityType' value='Ankomst' />
-            <EQ name='LocationSignature' value='Sst' />
+            <EQ name='ActivityType' value='Avgang' />
+            <EQ name='LocationSignature' value='Flb' />
             <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:10:00)' />
             <LT name='AdvertisedTimeAtLocation' value='$dateadd(1:00:00)' />
          </AND>
