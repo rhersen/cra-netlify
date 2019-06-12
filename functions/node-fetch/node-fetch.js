@@ -1,11 +1,11 @@
 const fetch = require("node-fetch")
-exports.handler = async function(event) {
+exports.handler = async function({ queryStringParameters }) {
   try {
     const response = await fetch(
       "http://api.trafikinfo.trafikverket.se/v1.2/data.json",
       {
         method: "POST",
-        body: getBody(),
+        body: getBody(queryStringParameters),
         headers: {
           "Content-Type": "application/xml",
           Accept: "application/json"
@@ -32,7 +32,7 @@ exports.handler = async function(event) {
   }
 }
 
-function getBody() {
+function getBody({ location = "Flb" }) {
   return `
 <REQUEST>
   <LOGIN authenticationkey='${process.env.TRAFIKVERKET_API_KEY}' />
@@ -40,7 +40,7 @@ function getBody() {
       <FILTER>
          <AND>
             <EQ name='ActivityType' value='Avgang' />
-            <EQ name='LocationSignature' value='Flb' />
+            <EQ name='LocationSignature' value='${location}' />
             <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:10:00)' />
             <LT name='AdvertisedTimeAtLocation' value='$dateadd(1:00:00)' />
          </AND>

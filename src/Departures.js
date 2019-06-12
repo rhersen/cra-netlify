@@ -9,15 +9,10 @@ export default class Departures extends React.Component {
   render() {
     return (
       <div>
-        <button
-          onClick={async () => {
-            const response = await fetch("/.netlify/functions/node-fetch")
-            const departures = await response.json()
-            this.setState({ departures })
-          }}
-        >
-          fetch
-        </button>
+        {this.button("Sub")}
+        {this.button("Cst")}
+        {this.button("Flb")}
+        {this.button("Tul")}
         <ul>
           {this.state.departures
             .filter(d => d.ToLocation)
@@ -34,6 +29,21 @@ export default class Departures extends React.Component {
             ))}
         </ul>
       </div>
+    )
+  }
+
+  button(location) {
+    return (
+      <button
+        onClick={async () => {
+          const response = await fetch(
+            `/.netlify/functions/node-fetch?location=${location}`
+          )
+          this.setState({ departures: await response.json() })
+        }}
+      >
+        {location}
+      </button>
     )
   }
 }
