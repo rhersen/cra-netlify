@@ -14,7 +14,10 @@ exports.handler = async function({ queryStringParameters }) {
     )
     if (!response.ok)
       // NOT res.status >= 200 && res.status < 300
-      return { statusCode: response.status, body: response.statusText }
+      return {
+        statusCode: response.status,
+        body: JSON.stringify({ msg: response.statusText })
+      }
 
     const data = await response.json()
     const trains = data.RESPONSE.RESULT[0].TrainAnnouncement
