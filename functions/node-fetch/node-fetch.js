@@ -32,17 +32,39 @@ exports.handler = async function({ queryStringParameters }) {
   }
 }
 
-function getBody({ location = "Flb" }) {
+function getBody({ direction, locations, since, until }) {
   return `
 <REQUEST>
   <LOGIN authenticationkey='${process.env.TRAFIKVERKET_API_KEY}' />
      <QUERY objecttype='TrainAnnouncement'>
       <FILTER>
          <AND>
-            <EQ name='ActivityType' value='Avgang' />
-            <EQ name='LocationSignature' value='${location}' />
-            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:10:00)' />
-            <LT name='AdvertisedTimeAtLocation' value='$dateadd(1:00:00)' />
+            <NE name='Canceled' value='true' />
+            <LIKE name='AdvertisedTrainIdent' value='/[${
+              direction === "n" ? "02468" : "13579"
+            }]$/' />
+            <OR> ${locations
+              .split(",")
+              .map(
+                location =>
+                  `<EQ name='LocationSignature' value='${location}' />`
+              )
+              .join(" ")}
+            </OR>
+            <OR>
+             <AND>
+              <GT name='AdvertisedTimeAtLocation' value='$dateadd(-${since}:00)' />
+              <LT name='AdvertisedTimeAtLocation' value='$dateadd(${until}:00)' />
+             </AND>
+             <AND>
+              <GT name='EstimatedTimeAtLocation' value='$dateadd(-${since}:00)' />
+              <LT name='EstimatedTimeAtLocation' value='$dateadd(${until}:00)' />
+             </AND>
+             <AND>
+              <GT name='TimeAtLocation' value='$dateadd(-${since}:00)' />
+              <LT name='TimeAtLocation' value='$dateadd(${until}:00)' />
+             </AND>
+            </OR>
          </AND>
       </FILTER>
      </QUERY>
