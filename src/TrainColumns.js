@@ -7,7 +7,12 @@ function TrainColumns({ announcements, locations }) {
   return (
     <div className="tr tbody">
       {map(trains(announcements, new Date()), id => (
-        <Column announcements={announcements} id={id} locations={locations} />
+        <Column
+          key={id}
+          announcements={announcements}
+          id={id}
+          locations={locations}
+        />
       ))}
     </div>
   )

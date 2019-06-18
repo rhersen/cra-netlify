@@ -11,7 +11,13 @@ function Column({ announcements, id, locations }) {
       <ColumnHead announcements={announcements} id={id} />
       {map(locations, loc =>
         map(["Ankomst", "Avgang"], activityType => (
-          <Time activityType={activityType} times={ts} loc={loc} id={id} />
+          <Time
+            key={loc + activityType}
+            activityType={activityType}
+            times={ts}
+            loc={loc}
+            id={id}
+          />
         ))
       )}
     </div>
