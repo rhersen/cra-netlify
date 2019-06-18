@@ -20,11 +20,11 @@ exports.handler = async function({ queryStringParameters }) {
       }
 
     const data = await response.json()
-    const trains = data.RESPONSE.RESULT[0].TrainAnnouncement
+    const [body] = data.RESPONSE.RESULT
 
     return {
       statusCode: 200,
-      body: JSON.stringify(trains)
+      body: JSON.stringify(body)
     }
   } catch (err) {
     console.log(err) // output to netlify function log
