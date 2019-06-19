@@ -10,7 +10,7 @@ function Nav({ getTrains }) {
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "w", direction: "s" })}>
-          Järfälla söderut
+          söderut
         </button>
       </span>
       <span>
@@ -20,7 +20,7 @@ function Nav({ getTrains }) {
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "n", direction: "s" })}>
-          Solna söderut
+          söderut
         </button>
       </span>
       <span>
@@ -30,7 +30,7 @@ function Nav({ getTrains }) {
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "c", direction: "s" })}>
-          Centralen söderut
+          söderut
         </button>
       </span>
       <span>
@@ -40,7 +40,7 @@ function Nav({ getTrains }) {
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "s", direction: "s" })}>
-          Huddinge söderut
+          söderut
         </button>
       </span>
       <span>
@@ -50,7 +50,7 @@ function Nav({ getTrains }) {
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "e", direction: "s" })}>
-          Haninge söderut
+          söderut
         </button>
       </span>
     </div>

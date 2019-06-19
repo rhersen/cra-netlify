@@ -22,7 +22,11 @@ class App extends React.Component {
         {msg && <div>{msg}</div>}
         <Nav
           getTrains={async ({ branch, direction }) => {
-            this.setState({ msg: "laddar...", branch, direction })
+            this.setState({
+              branch,
+              direction,
+              announcements: []
+            })
             const response = await fetch(
               `/.netlify/functions/node-fetch?direction=${direction}&locations=${location[branch]}&since=1:00&until=1:30`
             )
