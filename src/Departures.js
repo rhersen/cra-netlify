@@ -3,7 +3,7 @@ import React from "react"
 export default class Departures extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { departures: [] }
+    this.state = { departures: [], msg: "" }
   }
 
   render() {
@@ -13,6 +13,7 @@ export default class Departures extends React.Component {
         {this.button("Cst")}
         {this.button("Flb")}
         {this.button("Tul")}
+        <div>{this.state.msg}</div>
         <ul>
           {this.state.departures
             .filter(d => d.ToLocation)
@@ -39,7 +40,10 @@ export default class Departures extends React.Component {
           const response = await fetch(
             `/.netlify/functions/node-fetch?location=${location}`
           )
-          this.setState({ departures: await response.json() })
+          const json = await response.json()
+          if (json.msg) this.setState({ msg: json.msg })
+          if (json.TrainAnnouncement)
+            this.setState({ departures: json.TrainAnnouncement, msg: "" })
         }}
       >
         {location}
