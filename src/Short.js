@@ -5,5 +5,12 @@ export default function Short({ announcement: { Deviation } }) {
 }
 
 function text(a) {
-  return a && a.map(s => (/Kort/.test(s) ? "K" : s.length ? "*" : s))
+  return (
+    a &&
+    a.map(s => {
+      if (/Kort/.test(s)) return "K"
+      if (s.length) return "*"
+      return s
+    })
+  )
 }
