@@ -1,4 +1,5 @@
 import React from "react"
+import Table from "./Table"
 
 export default class Departures extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class Departures extends React.Component {
         {this.button("Flb")}
         {this.button("Tul")}
         <div>{this.state.msg}</div>
+        <Table announcements={this.state.departures} />
         <ul>
           {this.state.departures
             .filter(d => d.ToLocation)

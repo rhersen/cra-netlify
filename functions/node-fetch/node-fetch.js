@@ -44,7 +44,7 @@ function getBody({ location = "Flb" }) {
          <AND>
             <EQ name='ActivityType' value='Avgang' />
             <EQ name='LocationSignature' value='${location}' />
-            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:10:00)' />
+            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:15:00)' />
             <LT name='AdvertisedTimeAtLocation' value='$dateadd(1:00:00)' />
          </AND>
       </FILTER>
