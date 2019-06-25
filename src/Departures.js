@@ -4,7 +4,7 @@ import Table from "./Table"
 export default class Departures extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { departures: [], msg: "" }
+    this.state = { departures: [], msg: "", now: new Date() }
   }
 
   render() {
@@ -15,7 +15,7 @@ export default class Departures extends React.Component {
         {this.button("Flb")}
         {this.button("Tul")}
         <div>{this.state.msg}</div>
-        <Table announcements={this.state.departures} />
+        <Table announcements={this.state.departures} now={this.state.now} />
         <ul>
           {this.state.departures
             .filter(d => d.ToLocation)

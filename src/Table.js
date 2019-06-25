@@ -4,6 +4,7 @@ import TrainId from "./TrainId"
 import Short from "./Short"
 import Destination from "./Destination"
 import Time from "./Time"
+import Countdown from "./Countdown"
 import Deviation from "./Deviation"
 
 export default function Table({ announcements, now }) {
@@ -19,6 +20,7 @@ export default function Table({ announcements, now }) {
               <Destination announcement={announcement} />
               <AdvertisedTime announcement={announcement} />
               <Time announcement={announcement} />
+              <Countdown announcement={announcement} now={now} />
               <Deviation announcement={announcement} />
             </tr>
           )
