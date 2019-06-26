@@ -6,7 +6,7 @@ let intervalId
 export default class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { departures: [], msg: "", now: new Date() }
+    this.state = { announcements: [], msg: "", now: new Date() }
   }
 
   componentDidMount() {
@@ -18,14 +18,15 @@ export default class App extends React.Component {
   }
 
   render() {
+    const { msg, announcements, now } = this.state
     return (
       <div>
         {this.button("Sub")}
         {this.button("Cst")}
         {this.button("Flb")}
         {this.button("Tul")}
-        <div>{this.state.msg}</div>
-        <Table announcements={this.state.departures} now={this.state.now} />
+        <div>{msg}</div>
+        <Table announcements={announcements} now={now} />
       </div>
     )
   }
@@ -40,7 +41,7 @@ export default class App extends React.Component {
           const json = await response.json()
           if (json.msg) this.setState({ msg: json.msg })
           if (json.TrainAnnouncement)
-            this.setState({ departures: json.TrainAnnouncement, msg: "" })
+            this.setState({ announcements: json.TrainAnnouncement, msg: "" })
         }}
       >
         {location}
