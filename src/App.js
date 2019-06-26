@@ -1,10 +1,20 @@
 import React from "react"
 import Table from "./Table"
 
+let intervalId
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = { departures: [], msg: "", now: new Date() }
+  }
+
+  componentDidMount() {
+    intervalId = setInterval(() => this.setState({ now: new Date() }), 990)
+  }
+
+  componentWillUnmount() {
+    clearInterval(intervalId)
   }
 
   render() {
