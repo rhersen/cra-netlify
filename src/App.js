@@ -1,5 +1,6 @@
 import React from "react"
 import Table from "./Table"
+import locations from "./locations"
 
 let intervalId
 
@@ -22,7 +23,13 @@ export default class App extends React.Component {
     return (
       <div>
         {this.button("Sub")}
-        {this.button("Cst")}
+        {this.button("Sod")}
+        {this.button("Sci")}
+        {this.button("Sst")}
+        {this.button("Åbe")}
+        {this.button("Äs")}
+        {this.button("Sta")}
+        {this.button("Hu")}
         {this.button("Flb")}
         {this.button("Tul")}
         <div>{msg}</div>
@@ -44,7 +51,7 @@ export default class App extends React.Component {
             this.setState({ announcements: json.TrainAnnouncement, msg: "" })
         }}
       >
-        {location}
+        {locations(location)}
       </button>
     )
   }
