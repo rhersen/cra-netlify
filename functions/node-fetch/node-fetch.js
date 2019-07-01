@@ -39,12 +39,17 @@ function getBody({ location = "Flb" }) {
   return `
 <REQUEST>
   <LOGIN authenticationkey='${process.env.TRAFIKVERKET_API_KEY}' />
-     <QUERY objecttype='TrainAnnouncement'>
+     <QUERY objecttype='TrainAnnouncement' orderby='AdvertisedTimeAtLocation'>
       <FILTER>
          <AND>
+            <NE name='Canceled' value='true' />
+            <EQ name='Advertised' value='true' />
             <EQ name='ActivityType' value='Avgang' />
             <EQ name='LocationSignature' value='${location}' />
-            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:15:00)' />
+            <OR>
+               <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:15:00)' />
+               <GT name='EstimatedTimeAtLocation' value='$dateadd(-0:15:00)' />
+            </OR>
             <LT name='AdvertisedTimeAtLocation' value='$dateadd(1:00:00)' />
          </AND>
       </FILTER>
