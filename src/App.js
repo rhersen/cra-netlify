@@ -11,12 +11,12 @@ export default class App extends React.Component {
     return (
       <div>
         <div>{this.state.msg}</div>
-        <p>Från Tullinge</p>
         <table>
+          <caption>Från Tullinge</caption>
           <tbody>{this.state.northbounds.filter(d => d).map(tr)}</tbody>
         </table>
-        <p>Från Sundbyberg</p>
         <table>
+          <caption>Från Sundbyberg</caption>
           <tbody>{this.state.southbounds.filter(d => d).map(tr)}</tbody>
         </table>
       </div>
