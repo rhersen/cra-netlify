@@ -1,14 +1,12 @@
 const fetch = require("node-fetch")
-exports.handler = async function({ queryStringParameters }) {
+exports.handler = async function() {
   try {
     const response = await fetch(
-      "http://api.trafikinfo.trafikverket.se/v1.2/data.json",
+      `http://api.sl.se/v1.2/data.json/api2/realtimedeparturesV4.json?key=${process.env.SL_API_KEY}&siteid=9001&timewindow=60`,
       {
-        method: "POST",
-        body: getBody(queryStringParameters),
+        method: "GET",
         headers: {
-          "Content-Type": "application/xml",
-          Accept: "application/json"
+          "Content-Type": "application/json; charset=utf-8"
         }
       }
     )
@@ -16,38 +14,20 @@ exports.handler = async function({ queryStringParameters }) {
       // NOT res.status >= 200 && res.status < 300
       return {
         statusCode: response.status,
-        body: JSON.stringify({ msg: response.statusText })
+        body: JSON.stringify({ Message: response.statusText })
       }
 
     const data = await response.json()
-    const [body] = data.RESPONSE.RESULT
 
     return {
       statusCode: 200,
-      body: JSON.stringify(body)
+      body: JSON.stringify(data)
     }
   } catch (err) {
     console.log(err) // output to netlify function log
     return {
       statusCode: 500,
-      body: JSON.stringify({ msg: err.message }) // Could be a custom message or object i.e. JSON.stringify(err)
+      body: JSON.stringify({ Message: err.message }) // Could be a custom message or object i.e. JSON.stringify(err)
     }
   }
-}
-
-function getBody({ location = "Flb" }) {
-  return `
-<REQUEST>
-  <LOGIN authenticationkey='${process.env.TRAFIKVERKET_API_KEY}' />
-     <QUERY objecttype='TrainAnnouncement'>
-      <FILTER>
-         <AND>
-            <EQ name='ActivityType' value='Avgang' />
-            <EQ name='LocationSignature' value='${location}' />
-            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:10:00)' />
-            <LT name='AdvertisedTimeAtLocation' value='$dateadd(1:00:00)' />
-         </AND>
-      </FILTER>
-     </QUERY>
-</REQUEST>`
 }
