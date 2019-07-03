@@ -1,5 +1,5 @@
 import React from "react"
-import moment from "moment"
+import { differenceInMinutes, isBefore } from "date-fns"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -83,9 +83,7 @@ function selectAnkomst(ankomsts, avgang) {
 function minutes(ankomst, avgang) {
   const ank = ankomst.AdvertisedTimeAtLocation
   const avg = avgang.AdvertisedTimeAtLocation
-  const ankm = moment(ank)
-  const avgm = moment(avg)
-  return ankm.diff(avgm, "minutes")
+  return differenceInMinutes(ank, avg)
 }
 
 function getNorthbound(as) {
@@ -123,16 +121,15 @@ function getNorthbound(as) {
   }
 
   function isTimeBefore(a, b) {
-    return moment(a.AdvertisedTimeAtLocation).isBefore(
-      moment(b.AdvertisedTimeAtLocation)
-    )
+    return isBefore(a.AdvertisedTimeAtLocation, b.AdvertisedTimeAtLocation)
       ? b
       : a
   }
 
   function minutes(ankomst, avgang) {
-    const ank = moment(ankomst.AdvertisedTimeAtLocation)
-    const avg = moment(avgang.AdvertisedTimeAtLocation)
-    return ank.diff(avg, "minutes")
+    return differenceInMinutes(
+      ankomst.AdvertisedTimeAtLocation,
+      avgang.AdvertisedTimeAtLocation
+    )
   }
 }
