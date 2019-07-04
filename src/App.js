@@ -12,10 +12,8 @@ class App extends React.Component {
       <div>
         <div>text-react</div>
         <nav>
-          {this.button("Sub")}
-          {this.button("Cst")}
-          {this.button("Flb")}
-          {this.button("Tul")}
+          {this.button("n")}
+          {this.button("s")}
         </nav>
         <div>{this.state.msg}</div>
         <ul>
@@ -37,12 +35,12 @@ class App extends React.Component {
     )
   }
 
-  button(location) {
+  button(direction) {
     return (
       <button
         onClick={async () => {
           const response = await fetch(
-            `/.netlify/functions/node-fetch?location=${location}`
+            `/.netlify/functions/node-fetch?direction=${direction}`
           )
           const json = await response.json()
           if (json.msg) this.setState({ msg: json.msg })
@@ -50,7 +48,7 @@ class App extends React.Component {
             this.setState({ departures: json.TrainAnnouncement, msg: "" })
         }}
       >
-        {location}
+        {direction}
       </button>
     )
   }

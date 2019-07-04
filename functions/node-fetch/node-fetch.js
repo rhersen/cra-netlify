@@ -35,19 +35,42 @@ exports.handler = async function({ queryStringParameters }) {
   }
 }
 
-function getBody({ location = "Flb" }) {
+function getBody({ direction }) {
   return `
 <REQUEST>
   <LOGIN authenticationkey='${process.env.TRAFIKVERKET_API_KEY}' />
-     <QUERY objecttype='TrainAnnouncement'>
+     <QUERY objecttype='TrainAnnouncement' lastmodified='true' orderby='AdvertisedTimeAtLocation'>
       <FILTER>
-         <AND>
-            <EQ name='ActivityType' value='Avgang' />
-            <EQ name='LocationSignature' value='${location}' />
-            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:10:00)' />
-            <LT name='AdvertisedTimeAtLocation' value='$dateadd(1:00:00)' />
-         </AND>
+       <AND>
+         <IN name='ProductInformation' value='Pendeltåg' />
+         <LIKE name='AdvertisedTrainIdent' value='/[${
+           direction === "n" ? "02468" : "13579"
+         }]$/' />
+         <OR>
+           <AND>
+            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:12:00)' />
+            <LT name='AdvertisedTimeAtLocation' value='$dateadd(0:12:00)' />
+           </AND>
+           <AND>
+            <GT name='EstimatedTimeAtLocation' value='$dateadd(-0:12:00)' />
+            <LT name='EstimatedTimeAtLocation' value='$dateadd(0:12:00)' />
+           </AND>
+           <AND>
+            <GT name='TimeAtLocation' value='$dateadd(-0:12:00)' />
+            <LT name='TimeAtLocation' value='$dateadd(0:12:00)' />
+           </AND>
+         </OR>
+       </AND>
       </FILTER>
+      <INCLUDE>ActivityType</INCLUDE>
+      <INCLUDE>AdvertisedLocationName</INCLUDE>
+      <INCLUDE>AdvertisedShortLocationName</INCLUDE>
+      <INCLUDE>AdvertisedTrainIdent</INCLUDE>
+      <INCLUDE>AdvertisedTimeAtLocation</INCLUDE>
+      <INCLUDE>Geometry</INCLUDE>
+      <INCLUDE>LocationSignature</INCLUDE>
+      <INCLUDE>TimeAtLocation</INCLUDE>
+      <INCLUDE>ToLocation</INCLUDE>
      </QUERY>
 </REQUEST>`
 }
