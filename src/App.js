@@ -10,10 +10,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.button("Sub")}
-        {this.button("Cst")}
-        {this.button("Flb")}
-        {this.button("Tul")}
+        <div>text-react</div>
+        <nav>
+          {this.button("Sub")}
+          {this.button("Cst")}
+          {this.button("Flb")}
+          {this.button("Tul")}
+        </nav>
         <div>{this.state.msg}</div>
         <ul>
           {this.state.departures
