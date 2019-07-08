@@ -4,7 +4,7 @@ import "./App.css"
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { departures: [], msg: "" }
+    this.state = { result: {}, msg: "" }
   }
 
   render() {
@@ -17,7 +17,7 @@ class App extends React.Component {
         </nav>
         <div>{this.state.msg}</div>
         <ul>
-          {this.state.departures
+          {(this.state.result.TrainAnnouncement || [])
             .filter(d => d.ToLocation)
             .map(d => (
               <li key={d.AdvertisedTrainIdent}>
@@ -39,13 +39,22 @@ class App extends React.Component {
     return (
       <button
         onClick={async () => {
+          this.setState({
+            result: {},
+            msg: `laddar ${direction}`,
+            clicked: direction,
+            loaded: undefined
+          })
           const response = await fetch(
             `/.netlify/functions/node-fetch?direction=${direction}`
           )
-          const json = await response.json()
-          if (json.msg) this.setState({ msg: json.msg })
-          if (json.TrainAnnouncement)
-            this.setState({ departures: json.TrainAnnouncement, msg: "" })
+          const result = await response.json()
+          this.setState({
+            result,
+            loaded: direction,
+            clicked: undefined,
+            msg: result.msg
+          })
         }}
       >
         {direction}
