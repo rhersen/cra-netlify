@@ -1,5 +1,8 @@
 import React from "react"
 import "./App.css"
+import format from "date-fns/format"
+import * as grid from "./grid"
+import Trains from "./Trains"
 
 class App extends React.Component {
   constructor(props) {
@@ -9,57 +12,67 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>text-react</div>
-        <nav>
-          {this.button("n")}
-          {this.button("s")}
-        </nav>
-        <div>{this.state.msg}</div>
-        <ul>
-          {(this.state.result.TrainAnnouncement || [])
-            .filter(d => d.ToLocation)
-            .map(d => (
-              <li key={d.AdvertisedTrainIdent}>
-                {d.TypeOfTraffic} {d.AdvertisedTrainIdent} mot{" "}
-                {d.ToLocation.map(loc => loc.LocationName)}{" "}
-                {d.TimeAtLocation ? "avgick" : "avgår"} från spår{" "}
-                {d.TrackAtLocation} kl{" "}
-                {d.TimeAtLocation
-                  ? d.TimeAtLocation.substr(11, 5)
-                  : d.AdvertisedTimeAtLocation.substr(11, 5)}
-              </li>
-            ))}
-        </ul>
-      </div>
+      <svg viewBox="-4 -6 8 12">
+        <polygon
+          className={
+            this.state.loaded === "n"
+              ? "loaded"
+              : this.state.clicked === "n"
+              ? "clicked"
+              : "idle"
+          }
+          points={grid.leftTriangle()}
+          stroke="#005CFF"
+          fill="#f5f5f5"
+          onClick={this.getCurrent("n")}
+        />
+        <polygon
+          className={
+            this.state.loaded === "s"
+              ? "loaded"
+              : this.state.clicked === "s"
+              ? "clicked"
+              : "idle"
+          }
+          points={grid.rightTriangle()}
+          stroke="#005CFF"
+          fill="#f5f5f5"
+          onClick={this.getCurrent("s")}
+        />
+        {this.state.result.INFO && (
+          <g>
+            <text className="timestamp" textAnchor="middle" x="-1.5" y="-0.5">
+              {format(
+                this.state.result.INFO.LASTMODIFIED["@datetime"],
+                "H:mm:ss"
+              )}
+            </text>
+            <Trains result={this.state.result} stations={this.state.stations} />
+          </g>
+        )}
+      </svg>
     )
   }
 
-  button(direction) {
-    return (
-      <button
-        onClick={async () => {
-          this.setState({
-            result: {},
-            msg: `laddar ${direction}`,
-            clicked: direction,
-            loaded: undefined
-          })
-          const response = await fetch(
-            `/.netlify/functions/node-fetch?direction=${direction}`
-          )
-          const result = await response.json()
-          this.setState({
-            result,
-            loaded: direction,
-            clicked: undefined,
-            msg: result.msg
-          })
-        }}
-      >
-        {direction}
-      </button>
-    )
+  getCurrent(direction) {
+    return async () => {
+      this.setState({
+        result: {},
+        msg: `laddar ${direction}`,
+        clicked: direction,
+        loaded: undefined
+      })
+      const response = await fetch(
+        `/.netlify/functions/node-fetch?direction=${direction}`
+      )
+      const result = await response.json()
+      this.setState({
+        result,
+        loaded: direction,
+        clicked: undefined,
+        msg: result.msg
+      })
+    }
   }
 }
 

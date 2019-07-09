@@ -4,23 +4,18 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+  height: 80px;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-intro {
+  font-size: large;
 }
 
 @keyframes App-logo-spin {
@@ -30,4 +25,99 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+polygon {
+  stroke-width: 0.02px
+}
+
+polygon.clicked {
+  fill: gray
+}
+
+polygon.loaded {
+  fill: hsl(240, 100%, 50%)
+}
+
+g {
+  transition: transform 0.5s;
+}
+
+g.pos-nw {
+  transform: translate(-4px, -6px);
+}
+
+g.pos-ne {
+  transform: translate(0, -6px);
+}
+
+g.pos-sw {
+  transform: translate(-4px, 2px);
+}
+
+g.pos-se {
+  transform: translate(0, 2px);
+}
+
+g.pos-c {
+  transform: translate(-2px, -2px);
+}
+
+.expanded-nw > .pos-nw {
+  transform: translate(-4px, -4px) scale(2, 2);
+}
+
+.expanded-ne > .pos-ne {
+  transform: translate(-4px, -4px) scale(2, 2);
+}
+
+.expanded-c > .pos-c {
+  transform: translate(-4px, -4px) scale(2, 2);
+}
+
+.expanded-sw > .pos-sw {
+  transform: translate(-4px, -4px) scale(2, 2);
+}
+
+.expanded-se > .pos-se {
+  transform: translate(-4px, -4px) scale(2, 2);
+}
+
+.expanded-ne > .pos-nw, .expanded-c > .pos-nw, .expanded-sw > .pos-nw, .expanded-se > .pos-nw {
+  transform: translate(-4px, -6px) scale(0.5, 0.5);
+}
+
+.expanded-nw > .pos-ne, .expanded-c > .pos-ne, .expanded-sw > .pos-ne, .expanded-se > .pos-ne {
+  transform: translate(2px, -6px) scale(0.5, 0.5);
+}
+
+.expanded-nw > .pos-sw, .expanded-c > .pos-sw, .expanded-ne > .pos-sw, .expanded-se > .pos-sw {
+  transform: translate(-4px, 4px) scale(0.5, 0.5);
+}
+
+.expanded-nw > .pos-se, .expanded-c > .pos-se, .expanded-ne > .pos-se, .expanded-sw > .pos-se {
+  transform: translate(2px, 4px) scale(0.5, 0.5);
+}
+
+.expanded-nw > .pos-c, .expanded-ne > .pos-c {
+  transform: translate(-1px, 4px) scale(0.5, 0.5);
+}
+
+.expanded-sw > .pos-c, .expanded-se > .pos-c {
+  transform: translate(-1px, -6px) scale(0.5, 0.5);
+}
+
+text.timestamp {
+  fill: #005CFF;
+  font-size: 0.2px;
+}
+
+text.train {
+  font-family: Arial Narrow, Arial, sans-serif;
+}
+
+rect.branch {
+  fill: #000;
+  stroke: red;
+  stroke-width: 0.02px
 }
