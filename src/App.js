@@ -32,6 +32,7 @@ export default class App extends React.Component {
         {this.button("Hu")}
         {this.button("Flb")}
         {this.button("Tul")}
+        {this.button("Tu")}
         <div>{msg}</div>
         <Table announcements={announcements} now={now} />
       </div>
