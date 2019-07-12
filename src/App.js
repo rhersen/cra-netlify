@@ -3,11 +3,12 @@ import "./App.css"
 import format from "date-fns/format"
 import * as grid from "./grid"
 import Trains from "./Trains"
+import locations from "./locations"
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { result: {}, msg: "" }
+    this.state = { result: {}, msg: "", stations: locations() }
   }
 
   render() {

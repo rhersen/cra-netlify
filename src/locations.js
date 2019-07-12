@@ -2261,14 +2261,17 @@ const raw = {
 
 let locations
 
-export default location => {
+export default () => {
   const [result] = raw.RESPONSE.RESULT
   if (!locations) {
     locations = {}
-    result.TrainStation.forEach(obj => (locations[obj.LocationSignature] = obj))
+    result.TrainStation.forEach(obj => {
+      const match = /POINT \(([.\d]+) ([.\d]+)\)/.exec(obj.Geometry.WGS84)
+      if (match) {
+        const [, east, north] = match
+        locations[obj.LocationSignature] = { east, north, ...obj }
+      }
+    })
   }
-  return (
-    (locations[location] && locations[location].AdvertisedShortLocationName) ||
-    location
-  )
+  return locations
 }
