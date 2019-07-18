@@ -46,14 +46,7 @@ function getBody({ direction, locations, since, until }) {
             <LIKE name='AdvertisedTrainIdent' value='/[${
               direction === "n" ? "02468" : "13579"
             }]$/' />
-            <OR> ${locations
-              .split(",")
-              .map(
-                location =>
-                  `<EQ name='LocationSignature' value='${location}' />`
-              )
-              .join(" ")}
-            </OR>
+            <IN name='LocationSignature' value='${locations}' />
             <OR>
              <AND>
               <GT name='AdvertisedTimeAtLocation' value='$dateadd(-${since}:00)' />
