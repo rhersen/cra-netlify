@@ -42,22 +42,22 @@ function getBody({ direction }) {
      <QUERY objecttype='TrainAnnouncement' lastmodified='true' orderby='AdvertisedTimeAtLocation'>
       <FILTER>
        <AND>
-         <IN name='ProductInformation' value='Pendeltåg' />
+         <IN name='LocationSignature' value='Äs,Åbe,Sst,Sci,Sod,Tmö,So,Kmy,Udl,Hel,Sol,Hgv,Nvk,R,Upv,Skby,Rs,Bra,Mr,Rön,Gau,Södy,Tu,Uts,Tul,Flb,Hu,Sta,Hfa,Ts,Kda,Vhe,Jbo,Hnd,Vga,Skg,Tåd,Fas,Hön,Huv,Sub,Duo,Spå,Bkb,Jkb' />
          <LIKE name='AdvertisedTrainIdent' value='/[${
            direction === "n" ? "02468" : "13579"
          }]$/' />
          <OR>
            <AND>
-            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:12:00)' />
-            <LT name='AdvertisedTimeAtLocation' value='$dateadd(0:12:00)' />
+            <GT name='AdvertisedTimeAtLocation' value='$dateadd(-0:10:00)' />
+            <LT name='AdvertisedTimeAtLocation' value='$dateadd(0:10:00)' />
            </AND>
            <AND>
-            <GT name='EstimatedTimeAtLocation' value='$dateadd(-0:12:00)' />
-            <LT name='EstimatedTimeAtLocation' value='$dateadd(0:12:00)' />
+            <GT name='EstimatedTimeAtLocation' value='$dateadd(-0:10:00)' />
+            <LT name='EstimatedTimeAtLocation' value='$dateadd(0:10:00)' />
            </AND>
            <AND>
-            <GT name='TimeAtLocation' value='$dateadd(-0:12:00)' />
-            <LT name='TimeAtLocation' value='$dateadd(0:12:00)' />
+            <GT name='TimeAtLocation' value='$dateadd(-0:10:00)' />
+            <LT name='TimeAtLocation' value='$dateadd(0:10:00)' />
            </AND>
          </OR>
        </AND>

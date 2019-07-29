@@ -1,23 +1,25 @@
-import { groupBy, filter, map, reject, maxBy, minBy, orderBy } from "lodash"
+import { groupBy, filter, find, map, reject, maxBy, orderBy } from "lodash"
 import * as wgs from "./wgs"
 
 export default function currentTrains(announcement, stations) {
   const grouped = groupBy(announcement, "AdvertisedTrainIdent")
-  const object = filter(map(grouped, announcementsToObject), "actual")
+  const object = filter(
+    map(grouped, announcementsToObject),
+    "actual.ToLocation"
+  )
   const sorted = sortTrains(object, direction(announcement), stations)
   return reject(sorted, hasArrivedAtDestination)
 
   function announcementsToObject(v) {
+    const found = find(v, "ToLocation")
     const actual = maxBy(
       filter(v, "TimeAtLocation"),
       a => a.TimeAtLocation + a.ActivityType
     )
-    const next = minBy(
-      reject(v, "TimeAtLocation"),
-      a => a.AdvertisedTimeAtLocation + a.ActivityType
-    )
 
-    return { actual, next }
+    return found && actual && !actual.ToLocation
+      ? { actual: { ...actual, ToLocation: found.ToLocation } }
+      : { actual }
   }
 
   function direction(announcements) {
