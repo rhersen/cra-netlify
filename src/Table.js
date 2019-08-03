@@ -6,10 +6,15 @@ import Destination from "./Destination"
 import Time from "./Time"
 import Countdown from "./Countdown"
 import Deviation from "./Deviation"
+import locations from "./locations"
 
 export default function Table({ announcements, now }) {
   return (
     <table>
+      <caption>
+        {announcements.length > 0 &&
+          locations(announcements[0].LocationSignature)}
+      </caption>
       <tbody>
         {announcements.map(announcement => {
           const id = announcement.AdvertisedTrainIdent
