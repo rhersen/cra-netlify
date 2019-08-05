@@ -20,6 +20,7 @@ const isLocalhost = Boolean(
     )
 );
 
+// noinspection JSUnusedGlobalSymbols
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -129,6 +130,7 @@ function checkValidServiceWorker(swUrl, config) {
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
+      // noinspection JSIgnoredPromiseFromCall
       registration.unregister();
     });
   }
