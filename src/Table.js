@@ -1,6 +1,7 @@
 import React from "react"
 import AdvertisedTime from "./AdvertisedTime"
 import TrainId from "./TrainId"
+import Track from "./Track"
 import Short from "./Short"
 import Destination from "./Destination"
 import Time from "./Time"
@@ -21,6 +22,7 @@ export default function Table({ announcements, now }) {
           return (
             <tr key={id} className={direction(id)}>
               <TrainId announcement={announcement} />
+              <Track announcement={announcement} />
               <Short announcement={announcement} />
               <Destination announcement={announcement} />
               <AdvertisedTime announcement={announcement} />

@@ -27,6 +27,7 @@
     "no-useless-rename": "error",
     "no-var": "error",
     "object-shorthand": "error",
+    "arrow-body-style": "error",
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "prefer-destructuring": "error",

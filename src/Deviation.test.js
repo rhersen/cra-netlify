@@ -5,38 +5,33 @@ import Deviation from "./Deviation"
 
 configure({ adapter: new Adapter() })
 
-describe("text", () => {
-  it("should ", () => {
+describe("Deviation", () => {
+  it("shows deviation", () =>
     expect(
       shallow(<Deviation announcement={{ Deviation: ["Signalfel"] }} />).text()
-    ).toBe("Signalfel")
-  })
+    ).toBe("Signalfel"))
 
-  it("should ", () => {
+  it("Does not show 'Kort tåg'", () =>
     expect(
       shallow(<Deviation announcement={{ Deviation: ["Kort tåg"] }} />).text()
-    ).toBe("")
-  })
+    ).toBe(""))
 
-  it("should ", () => {
+  it("shows empty string if there are no deviations", () =>
     expect(shallow(<Deviation announcement={{ Deviation: [] }} />).text()).toBe(
       ""
-    )
-  })
+    ))
 
-  it("should ", () => {
-    expect(shallow(<Deviation announcement={{}} />).text()).toBe("")
-  })
+  it("shows empty string if there is no deviations array", () =>
+    expect(shallow(<Deviation announcement={{}} />).text()).toBe(""))
 
-  it("should ", () => {
+  it("does not show short train", () =>
     expect(
       shallow(
         <Deviation announcement={{ Deviation: ["Kort tåg", "Spårspring"] }} />
       ).text()
-    ).toBe("Spårspring")
-  })
+    ).toBe("Spårspring"))
 
-  it("should ", () => {
+  it("shows two deviations", () =>
     expect(
       shallow(
         <Deviation
@@ -45,6 +40,5 @@ describe("text", () => {
       ).html()
     ).toBe(
       '<td class="deviation"><div>Spårändrat</div><div>Plattformsbyte</div></td>'
-    )
-  })
+    ))
 })
