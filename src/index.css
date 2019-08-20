@@ -53,8 +53,14 @@ td {
   }
 }
 
+@media (max-width: 720px) {
+  td.destination span.from {
+    display: none;
+  }
+}
+
 @media (max-width: 370px) {
-  td.delay {
+  td.delay, td.track {
     display: none;
   }
 }
