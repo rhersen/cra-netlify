@@ -30,7 +30,9 @@ export default (announcements, now) => {
   }
 
   function isTooEarly(a) {
-    return a.AdvertisedTimeAtLocation < lowerBound
+    return (
+      (a.EstimatedTimeAtLocation || a.AdvertisedTimeAtLocation) < lowerBound
+    )
   }
 
   function isTooLate(a) {
