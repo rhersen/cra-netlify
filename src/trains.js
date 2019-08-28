@@ -30,11 +30,11 @@ export default (announcements, now) => {
   }
 
   function isTooEarly(a) {
-    return a.AdvertisedTimeAtLocation < lowerBound
+    return estimatedTime(a) < lowerBound
   }
 
   function isTooLate(a) {
-    return a.AdvertisedTimeAtLocation > upperBound
+    return estimatedTime(a) > upperBound
   }
 
   function byAdvertisedTime(leftId, rightId) {
@@ -54,6 +54,10 @@ export default (announcements, now) => {
 
 function ids(announcements) {
   return uniq(map(announcements, "AdvertisedTrainIdent"))
+}
+
+function estimatedTime(a) {
+  return a.AdvertisedTimeAtLocation || a.AdvertisedTimeAtLocation
 }
 
 function compareTimes(a1, a2) {

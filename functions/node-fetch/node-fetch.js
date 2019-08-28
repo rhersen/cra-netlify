@@ -56,10 +56,6 @@ function getBody({ direction, locations, since, until }) {
               <GT name='EstimatedTimeAtLocation' value='$dateadd(-${since}:00)' />
               <LT name='EstimatedTimeAtLocation' value='$dateadd(${until}:00)' />
              </AND>
-             <AND>
-              <GT name='TimeAtLocation' value='$dateadd(-${since}:00)' />
-              <LT name='TimeAtLocation' value='$dateadd(${until}:00)' />
-             </AND>
             </OR>
          </AND>
       </FILTER>
