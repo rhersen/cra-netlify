@@ -11,8 +11,8 @@ import some from "lodash.some"
 import uniq from "lodash.uniq"
 
 export default (announcements, now) => {
-  const lowerBound = format(subMinutes(now, 56))
-  const upperBound = format(addMinutes(now, 56))
+  const lowerBound = format(subMinutes(now, 60))
+  const upperBound = format(addMinutes(now, 45))
   return difference(
     ids(announcements),
     ids(filter(announcements, isTooEarly)),

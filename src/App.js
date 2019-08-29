@@ -28,7 +28,7 @@ class App extends React.Component {
               announcements: []
             })
             const response = await fetch(
-              `/.netlify/functions/node-fetch?direction=${direction}&locations=${location[branch]}&since=1:00&until=1:30`
+              `/.netlify/functions/node-fetch?direction=${direction}&locations=${location[branch]}`
             )
             const json = await response.json()
             if (json.msg) this.setState({ msg: json.msg })

@@ -35,7 +35,7 @@ exports.handler = async function({ queryStringParameters }) {
   }
 }
 
-function getBody({ direction, locations, since, until }) {
+function getBody({ direction, locations }) {
   return `
 <REQUEST>
   <LOGIN authenticationkey='${process.env.TRAFIKVERKET_API_KEY}' />
@@ -49,12 +49,12 @@ function getBody({ direction, locations, since, until }) {
             <IN name='LocationSignature' value='${locations}' />
             <OR>
              <AND>
-              <GT name='AdvertisedTimeAtLocation' value='$dateadd(-${since}:00)' />
-              <LT name='AdvertisedTimeAtLocation' value='$dateadd(${until}:00)' />
+              <GT name='AdvertisedTimeAtLocation' value='$dateadd(-1:30)' />
+              <LT name='AdvertisedTimeAtLocation' value='$dateadd(1:15)' />
              </AND>
              <AND>
-              <GT name='EstimatedTimeAtLocation' value='$dateadd(-${since}:00)' />
-              <LT name='EstimatedTimeAtLocation' value='$dateadd(${until}:00)' />
+              <GT name='EstimatedTimeAtLocation' value='$dateadd(-1:30)' />
+              <LT name='EstimatedTimeAtLocation' value='$dateadd(1:15)' />
              </AND>
             </OR>
          </AND>
