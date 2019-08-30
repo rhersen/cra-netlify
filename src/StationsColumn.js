@@ -13,7 +13,7 @@ function StationsColumn({ locations }) {
       {map(locations, loc =>
         map(["Ankomst", "Avgang"], activity => (
           <span key={loc + activity} className={cx("td", "station", activity)}>
-            {activity.substr(0, 3)} {loc}
+            {activity.substr(0, 3).toLowerCase()} {loc}
           </span>
         ))
       )}

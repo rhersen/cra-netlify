@@ -20,6 +20,14 @@ export default (announcements, now) => {
     ids(reject(announcements, isPendel))
   ).sort(byAdvertisedTime)
 
+  function isTooEarly(a) {
+    return estimatedTime(a) < lowerBound
+  }
+
+  function isTooLate(a) {
+    return estimatedTime(a) > upperBound
+  }
+
   function isPendel(a) {
     return some(
       filter(announcements, {
@@ -27,14 +35,6 @@ export default (announcements, now) => {
       }),
       announcement => includes(announcement.ProductInformation, "Pendeltåg")
     )
-  }
-
-  function isTooEarly(a) {
-    return estimatedTime(a) < lowerBound
-  }
-
-  function isTooLate(a) {
-    return estimatedTime(a) > upperBound
   }
 
   function byAdvertisedTime(leftId, rightId) {
