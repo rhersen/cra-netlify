@@ -3,10 +3,7 @@ import * as wgs from "./wgs"
 
 export default function currentTrains(announcement, stations) {
   const grouped = groupBy(announcement, "AdvertisedTrainIdent")
-  const object = filter(
-    map(grouped, announcementsToObject),
-    "actual.ToLocation"
-  )
+  const object = filter(map(grouped, announcementsToObject), "ToLocation")
   const sorted = sortTrains(object, direction(announcement), stations)
   return reject(sorted, hasArrivedAtDestination)
 
@@ -18,8 +15,8 @@ export default function currentTrains(announcement, stations) {
     )
 
     return found && actual && !actual.ToLocation
-      ? { actual: { ...actual, ToLocation: found.ToLocation } }
-      : { actual }
+      ? { ...actual, ToLocation: found.ToLocation }
+      : actual
   }
 
   function direction(announcements) {
@@ -31,9 +28,8 @@ export default function currentTrains(announcement, stations) {
 
   function hasArrivedAtDestination(train) {
     return (
-      train.actual.ActivityType === "Ankomst" &&
-      map(train.actual.ToLocation, "LocationName").join() ===
-        train.actual.LocationSignature
+      train.ActivityType === "Ankomst" &&
+      map(train.ToLocation, "LocationName").join() === train.LocationSignature
     )
   }
 
@@ -41,9 +37,9 @@ export default function currentTrains(announcement, stations) {
     return orderBy(
       object,
       [
-        a => north(a.actual.LocationSignature, stations),
-        "actual.ActivityType",
-        "actual.TimeAtLocation"
+        a => north(a.LocationSignature, stations),
+        "ActivityType",
+        "TimeAtLocation"
       ],
       ["desc", dir ? "asc" : "desc", dir ? "desc" : "asc"]
     )

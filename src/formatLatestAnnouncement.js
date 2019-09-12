@@ -3,24 +3,19 @@ import { map } from "lodash"
 import difference_in_minutes from "date-fns/difference_in_minutes"
 
 export function line1(train, stations) {
-  const a = train.actual
+  if (!train) return "Aktuell information saknas"
 
-  if (!a) return "Aktuell information saknas"
-
-  return `${id(a)} mot ${map(map(a.ToLocation, "LocationName"), loc =>
+  return `${id(train)} ${map(map(train.ToLocation, "LocationName"), loc =>
     stationName(loc, stations)
-  )} ${precision(a)}`
+  )} ${precision(train)}`
 }
 
 export function line2(train, stations) {
-  const a = train.actual
+  if (!train) return "line2"
 
-  if (!a) return "line2"
-
-  return `${activity(a)} ${location(a)} kl ${a.TimeAtLocation.substring(
-    11,
-    16
-  )}`
+  return `${activity(train)} ${location(
+    train
+  )} kl ${train.TimeAtLocation.substring(11, 16)}`
 
   function location(a) {
     return stationName(a.LocationSignature, stations)

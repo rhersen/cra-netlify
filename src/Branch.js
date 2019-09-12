@@ -24,16 +24,16 @@ export default class Branch extends Component {
         <tspan
           x="0.05"
           dy={this.fontSize() * dy(this.props.trains.length)}
-          fill={color(train.actual)}
-          key={train.actual.AdvertisedTrainIdent + 1}
+          fill={color(train)}
+          key={train.AdvertisedTrainIdent + 1}
         >
           {line1(train, this.props.stations)}
         </tspan>,
         <tspan
           x="0.05"
           dy={this.fontSize()}
-          fill={color(train.actual)}
-          key={train.actual.AdvertisedTrainIdent + 2}
+          fill={color(train)}
+          key={train.AdvertisedTrainIdent + 2}
         >
           {line2(train, this.props.stations)}
         </tspan>

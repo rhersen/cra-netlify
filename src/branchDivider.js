@@ -1,7 +1,7 @@
 import * as wgs from "./wgs"
 
 export default function branchDivider(train, stations) {
-  const location = train.actual.LocationSignature
+  const location = train.LocationSignature
   const n = wgs.north(location, stations)
 
   if (n > 59.64) return "ne"

@@ -69,6 +69,7 @@ function getBody({ direction }) {
       <INCLUDE>AdvertisedTimeAtLocation</INCLUDE>
       <INCLUDE>Geometry</INCLUDE>
       <INCLUDE>LocationSignature</INCLUDE>
+      <INCLUDE>ProductInformation</INCLUDE>
       <INCLUDE>TimeAtLocation</INCLUDE>
       <INCLUDE>ToLocation</INCLUDE>
      </QUERY>
