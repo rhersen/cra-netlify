@@ -33,14 +33,12 @@ describe("currentTrains", () => {
       ])
     ).toEqual([
       {
-        actual: {
-          ActivityType: "Ankomst",
-          AdvertisedTimeAtLocation: "2019-07-21T20:16:00",
-          AdvertisedTrainIdent: "2865",
-          LocationSignature: "Fas",
-          TimeAtLocation: "2019-07-21T20:14:00",
-          ToLocation: [{ LocationName: "Vhe", Order: 0, Priority: 1 }]
-        }
+        ActivityType: "Ankomst",
+        AdvertisedTimeAtLocation: "2019-07-21T20:16:00",
+        AdvertisedTrainIdent: "2865",
+        LocationSignature: "Fas",
+        TimeAtLocation: "2019-07-21T20:14:00",
+        ToLocation: [{ LocationName: "Vhe", Order: 0, Priority: 1 }]
       }
     ])
   })
@@ -84,15 +82,13 @@ describe("currentTrains", () => {
       ])
     ).toEqual([
       {
-        actual: {
-          ActivityType: "Avgang",
-          AdvertisedTimeAtLocation: "2019-07-21T20:13:00",
-          AdvertisedTrainIdent: "2265",
-          LocationSignature: "TmÃ¶",
-          ModifiedTime: "2019-07-21T18:13:19.328Z",
-          TimeAtLocation: "2019-07-21T20:13:00",
-          ToLocation: [{ LocationName: "SÃ¶c", Priority: 1, Order: 0 }]
-        }
+        ActivityType: "Avgang",
+        AdvertisedTimeAtLocation: "2019-07-21T20:13:00",
+        AdvertisedTrainIdent: "2265",
+        LocationSignature: "TmÃ¶",
+        ModifiedTime: "2019-07-21T18:13:19.328Z",
+        TimeAtLocation: "2019-07-21T20:13:00",
+        ToLocation: [{ LocationName: "SÃ¶c", Priority: 1, Order: 0 }]
       }
     ])
   })
