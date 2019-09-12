@@ -14,9 +14,12 @@ export default function currentTrains(announcement, stations) {
       a => a.TimeAtLocation + a.ActivityType
     )
 
-    return found && actual && !actual.ToLocation
-      ? { ...actual, ToLocation: found.ToLocation }
-      : actual
+    if (actual)
+      return {
+        ...actual,
+        ToLocation:
+          found && !actual.ToLocation ? found.ToLocation : actual.ToLocation
+      }
   }
 
   function direction(announcements) {
