@@ -8,18 +8,26 @@ export default function currentTrains(announcement, stations) {
   return reject(sorted, hasArrivedAtDestination)
 
   function announcementsToObject(v) {
-    const found = find(v, "ToLocation")
     const actual = maxBy(
       filter(v, "TimeAtLocation"),
       a => a.TimeAtLocation + a.ActivityType
     )
 
-    if (actual)
+    if (actual) {
+      const withToLocation = find(v, "ToLocation")
+      const withProductInformation = find(v, "ProductInformation")
       return {
         ...actual,
         ToLocation:
-          found && !actual.ToLocation ? found.ToLocation : actual.ToLocation
+          withToLocation && !actual.ToLocation
+            ? withToLocation.ToLocation
+            : actual.ToLocation,
+        ProductInformation:
+          withProductInformation && !actual.ProductInformation
+            ? withProductInformation.ProductInformation
+            : actual.ProductInformation
       }
+    }
   }
 
   function direction(announcements) {
