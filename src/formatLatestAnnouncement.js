@@ -5,10 +5,8 @@ import difference_in_minutes from "date-fns/difference_in_minutes"
 export function line1(train, stations) {
   if (!train) return "Aktuell information saknas"
 
-  return `${train.ProductInformation &&
-    train.ProductInformation.join(" ")} mot ${map(
-    map(train.ToLocation, "LocationName"),
-    loc => stationName(loc, stations)
+  return `${id(train)} mot ${map(map(train.ToLocation, "LocationName"), loc =>
+    stationName(loc, stations)
   )} ${precision(train)}`
 }
 
