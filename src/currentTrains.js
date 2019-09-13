@@ -5,7 +5,7 @@ export default function currentTrains(announcement, stations) {
   const grouped = groupBy(announcement, "AdvertisedTrainIdent")
   const object = filter(map(grouped, announcementsToObject), "ToLocation")
   const sorted = sortTrains(object, direction(announcement), stations)
-  return reject(sorted, hasArrivedAtDestination)
+  return filter(reject(sorted, hasArrivedAtDestination), isPendel)
 
   function announcementsToObject(v) {
     const actual = maxBy(
@@ -42,6 +42,10 @@ export default function currentTrains(announcement, stations) {
       train.ActivityType === "Ankomst" &&
       map(train.ToLocation, "LocationName").join() === train.LocationSignature
     )
+  }
+
+  function isPendel(train) {
+    return !train.ProductInformation || train.ProductInformation.length === 2
   }
 
   function sortTrains(object, dir) {

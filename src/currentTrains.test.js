@@ -192,4 +192,51 @@ describe("currentTrains", () => {
       }
     ])
   })
+
+  it("removes SJ Regional trains", () => {
+    expect(
+      currentTrains([
+        {
+          ActivityType: "Ankomst",
+          AdvertisedTimeAtLocation: "2019-09-13T17:45:00",
+          AdvertisedTrainIdent: "2857",
+          LocationSignature: "SpÃ¥",
+          ModifiedTime: "2019-09-13T15:45:53.377Z",
+          ProductInformation: ["PendeltÃ¥g", "43"],
+          TimeAtLocation: "2019-09-13T17:46:00",
+          ToLocation: [{ LocationName: "Ts", Priority: 1, Order: 0 }]
+        },
+        {
+          ActivityType: "Avgang",
+          AdvertisedTimeAtLocation: "2019-09-13T17:45:00",
+          AdvertisedTrainIdent: "2857",
+          LocationSignature: "SpÃ¥",
+          ModifiedTime: "2019-09-13T15:44:15.555Z",
+          ProductInformation: ["PendeltÃ¥g", "43"],
+          ToLocation: [{ LocationName: "Ts", Priority: 1, Order: 0 }]
+        },
+        {
+          ActivityType: "Ankomst",
+          AdvertisedTimeAtLocation: "2019-09-13T17:45:00",
+          AdvertisedTrainIdent: "243",
+          LocationSignature: "Flb",
+          ModifiedTime: "2019-09-13T15:43:24.617Z",
+          ProductInformation: ["SJ Regional"],
+          TimeAtLocation: "2019-09-13T17:43:00",
+          ToLocation: [{ LocationName: "Nr", Priority: 1, Order: 0 }]
+        }
+      ])
+    ).toEqual([
+      {
+        ActivityType: "Ankomst",
+        AdvertisedTimeAtLocation: "2019-09-13T17:45:00",
+        AdvertisedTrainIdent: "2857",
+        LocationSignature: "SpÃ¥",
+        ModifiedTime: "2019-09-13T15:45:53.377Z",
+        ProductInformation: ["PendeltÃ¥g", "43"],
+        TimeAtLocation: "2019-09-13T17:46:00",
+        ToLocation: [{ LocationName: "Ts", Priority: 1, Order: 0 }]
+      }
+    ])
+  })
 })
