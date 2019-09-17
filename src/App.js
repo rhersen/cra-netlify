@@ -18,16 +18,21 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener("focus", this.onFocus)
+    window.addEventListener("visibilitychange", this.onFocus)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("focus", this.onFocus)
+    window.removeEventListener("visibilitychange", this.onFocus)
   }
 
   onFocus = () => {
     const { branch, direction } = this.state
-    if (branch && direction && this.secondsAgo() > 30)
+    if (
+      document.visibilityState === "visible" &&
+      branch &&
+      direction &&
+      this.secondsAgo() > 30
+    )
       this.getTrains(branch, direction)
   }
 
