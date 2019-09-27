@@ -35,7 +35,7 @@ function Nav({ getTrains }) {
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "e", direction: "n" })}>
-          Småland norrut
+          Nässjö norrut
         </button>
       </span>
       <span>
@@ -44,12 +44,32 @@ function Nav({ getTrains }) {
         </button>
       </span>
       <span>
+        <button onClick={() => getTrains({ branch: "v", direction: "n" })}>
+          Alvesta norrut
+        </button>
+      </span>
+      <span>
+        <button onClick={() => getTrains({ branch: "v", direction: "s" })}>
+          söderut
+        </button>
+      </span>
+      <span>
         <button onClick={() => getTrains({ branch: "w", direction: "n" })}>
-          Skåne norrut
+          Hässleholm norrut
         </button>
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "w", direction: "s" })}>
+          söderut
+        </button>
+      </span>
+      <span>
+        <button onClick={() => getTrains({ branch: "l", direction: "n" })}>
+          Lund norrut
+        </button>
+      </span>
+      <span>
+        <button onClick={() => getTrains({ branch: "l", direction: "s" })}>
           söderut
         </button>
       </span>

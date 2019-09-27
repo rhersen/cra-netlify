@@ -20,9 +20,16 @@ function Column({ announcements, id }) {
 }
 
 function product(found) {
-  const s = get(found, "ProductInformation.0")
-  const match = /SJ (.*)/.exec(s)
-  return match ? match[1] : s
+  let match
+  const s1 = get(found, "ProductInformation.0")
+  match = /^SJ (.*)$/.exec(s1)
+  const s2 = match ? match[1] : s1
+  match = /^(.stg).ta(p)endel$/.exec(s2)
+  const s3 = match ? match[1] : s2
+  match = /^(.+)t.ge?n?$/.exec(s3)
+  const s4 = match ? match[1] : s3
+  match = /^(.+)t.gen (.+)$/.exec(s4)
+  return match ? match[1] + match[2] : s4
 }
 
 export default Column

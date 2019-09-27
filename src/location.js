@@ -37,7 +37,9 @@ export default {
     "Gt",
     "Bdf",
     "Utp",
-    "Sä",
+    "Sä"
+  ],
+  v: [
     "Ahm",
     "Sy",
     "Rk",
@@ -68,7 +70,9 @@ export default {
     "Sg",
     "E",
     "Dat",
-    "Ö",
+    "Ö"
+  ],
+  l: [
     "Stb",
     "Thl",
     "Lu",

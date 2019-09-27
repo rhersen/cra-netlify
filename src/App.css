@@ -10,7 +10,7 @@ div.tr {
   flex-direction: row;
 }
 div.tr.tbody {
-  margin-left: 70px;
+  margin-left: 128px;
 }
 div.tc {
   display: flex;
@@ -45,7 +45,7 @@ span.td.delay8 {
   color: #fff;
 }
 span.td.station {
-  width: 70px;
+  width: 128px;
 }
 span.td.Ankomst {
   border-top: thin solid;
