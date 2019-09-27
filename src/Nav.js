@@ -4,28 +4,8 @@ function Nav({ getTrains }) {
   return (
     <div id="index">
       <span>
-        <button onClick={() => getTrains({ branch: "w", direction: "n" })}>
-          Järfälla norrut
-        </button>
-      </span>
-      <span>
-        <button onClick={() => getTrains({ branch: "w", direction: "s" })}>
-          söderut
-        </button>
-      </span>
-      <span>
-        <button onClick={() => getTrains({ branch: "n", direction: "n" })}>
-          Solna norrut
-        </button>
-      </span>
-      <span>
-        <button onClick={() => getTrains({ branch: "n", direction: "s" })}>
-          söderut
-        </button>
-      </span>
-      <span>
         <button onClick={() => getTrains({ branch: "c", direction: "n" })}>
-          Centralen norrut
+          Stockholm norrut
         </button>
       </span>
       <span>
@@ -34,8 +14,18 @@ function Nav({ getTrains }) {
         </button>
       </span>
       <span>
+        <button onClick={() => getTrains({ branch: "n", direction: "n" })}>
+          Södermanland norrut
+        </button>
+      </span>
+      <span>
+        <button onClick={() => getTrains({ branch: "n", direction: "s" })}>
+          söderut
+        </button>
+      </span>
+      <span>
         <button onClick={() => getTrains({ branch: "s", direction: "n" })}>
-          Huddinge norrut
+          Östergötland norrut
         </button>
       </span>
       <span>
@@ -45,11 +35,21 @@ function Nav({ getTrains }) {
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "e", direction: "n" })}>
-          Haninge norrut
+          Småland norrut
         </button>
       </span>
       <span>
         <button onClick={() => getTrains({ branch: "e", direction: "s" })}>
+          söderut
+        </button>
+      </span>
+      <span>
+        <button onClick={() => getTrains({ branch: "w", direction: "n" })}>
+          Skåne norrut
+        </button>
+      </span>
+      <span>
+        <button onClick={() => getTrains({ branch: "w", direction: "s" })}>
           söderut
         </button>
       </span>

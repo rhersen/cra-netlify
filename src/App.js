@@ -54,7 +54,7 @@ class App extends React.Component {
         <Sheet
           announcements={announcements}
           locations={
-            direction !== "n" && branch
+            direction === "n" && branch
               ? location[branch].slice().reverse()
               : location[branch]
           }

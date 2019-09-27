@@ -4,15 +4,14 @@ import format from "date-fns/format"
 import difference from "lodash.difference"
 import filter from "lodash.filter"
 import find from "lodash.find"
-import includes from "lodash.includes"
 import map from "lodash.map"
 import reject from "lodash.reject"
 import some from "lodash.some"
 import uniq from "lodash.uniq"
 
 export default (announcements, now) => {
-  const lowerBound = format(subMinutes(now, 60))
-  const upperBound = format(addMinutes(now, 45))
+  const lowerBound = format(subMinutes(now, 120))
+  const upperBound = format(addMinutes(now, 90))
   return difference(
     ids(announcements),
     ids(filter(announcements, isTooEarly)),
@@ -33,7 +32,7 @@ export default (announcements, now) => {
       filter(announcements, {
         AdvertisedTrainIdent: a.AdvertisedTrainIdent
       }),
-      announcement => includes(announcement.ProductInformation, "Pendeltåg")
+      announcement => announcement.ToLocation
     )
   }
 

@@ -6,9 +6,11 @@ function StationsColumn({ locations }) {
   return (
     <div className="tc station">
       <span className="td station">
-        train
+        prod
         <br />
-        station
+        dest
+        <br />
+        train
       </span>
       {map(locations, loc =>
         map(["Ankomst", "Avgang"], activity => (
