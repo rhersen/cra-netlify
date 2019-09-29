@@ -12,7 +12,6 @@ exports.handler = async function({ queryStringParameters }) {
         }
       }
     )
-    console.log(response)
     if (!response.ok)
       // NOT res.status >= 200 && res.status < 300
       return {
