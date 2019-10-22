@@ -5,5 +5,5 @@ export default {
   s: ["Öte", "Rön", "Gau", "Södy", "Tu", "Uts", "Tul", "Flb", "Hu", "Sta"],
   e: ["Hfa", "Ts", "Kda", "Vhe", "Jbo", "Hnd", "Vga", "Skg", "Tåd", "Fas", "Hön"],
   w: ["Huv", "Sub", "Duo", "Spå", "Bkb", "Jkb"],
-  u: ["Arnc", "Kn", "U"]
+  u: ["Bvr", "Arne", "Arnc", "Myn", "Kn", "Eby", "Säy", "U"]
 }
