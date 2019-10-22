@@ -53,6 +53,16 @@ function Nav({ getTrains }) {
           söderut
         </button>
       </span>
+      <span>
+        <button onClick={() => getTrains({ branch: "u", direction: "n" })}>
+          Arlanda norrut
+        </button>
+      </span>
+      <span>
+        <button onClick={() => getTrains({ branch: "u", direction: "s" })}>
+          söderut
+        </button>
+      </span>
     </div>
   )
 }
