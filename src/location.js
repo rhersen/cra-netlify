@@ -143,24 +143,19 @@ export default {
     "Hie",
     "Lnk"
   ],
-  bs: [
-    "G",
-    "Gro",
-    "Am",
-    "Mdö",
-    "Myk",
-    "Häy",
-    "Hås",
-    "Rd",
-    "Boy",
-    "Rö",
-    "Sae",
-    "Bs",
-    "Hil",
-    "Lme",
-    "Het",
-    "Gnö",
-    "Hto",
-    "V"
+  nk: [
+    "Hlö",
+    "Vhd",
+    "Lre",
+    "Tba",
+    "Ssa",
+    "Nk",
+    "Ebg",
+    "Jår",
+    "Åba",
+    "Kon",
+    "Gtå",
+    "Åby",
+    "Nr"
   ]
 }

@@ -24,36 +24,6 @@ function Nav({ getTrains }) {
         </button>
       </span>
       <span>
-        <button onClick={() => getTrains({ branch: "vt", direction: "n" })}>
-          Hallsberg norrut
-        </button>
-      </span>
-      <span>
-        <button onClick={() => getTrains({ branch: "vt", direction: "s" })}>
-          söderut
-        </button>
-      </span>
-      <span>
-        <button onClick={() => getTrains({ branch: "sk", direction: "n" })}>
-          Skövde
-        </button>
-      </span>
-      <span>
-        <button onClick={() => getTrains({ branch: "sk", direction: "s" })}>
-          söderut
-        </button>
-      </span>
-      <span>
-        <button onClick={() => getTrains({ branch: "g", direction: "n" })}>
-          Göteborg norrut
-        </button>
-      </span>
-      <span>
-        <button onClick={() => getTrains({ branch: "g", direction: "s" })}>
-          söderut
-        </button>
-      </span>
-      <span>
         <button onClick={() => getTrains({ branch: "s", direction: "n" })}>
           Östergötland norrut
         </button>
@@ -104,12 +74,12 @@ function Nav({ getTrains }) {
         </button>
       </span>
       <span>
-        <button onClick={() => getTrains({ branch: "bs", direction: "n" })}>
-          Borås norrut
+        <button onClick={() => getTrains({ branch: "nk", direction: "n" })}>
+          Nyköping norrut
         </button>
       </span>
       <span>
-        <button onClick={() => getTrains({ branch: "bs", direction: "s" })}>
+        <button onClick={() => getTrains({ branch: "nk", direction: "s" })}>
           söderut
         </button>
       </span>
